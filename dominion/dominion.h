@@ -130,6 +130,22 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 
 
 
+/*
+ * Refactored card effects
+ */
+
+
+int playAdventurer(struct gameState *state);
+
+int playSmithy(struct gameState *state, int handPos);
+
+int playSteward(struct gameState *state, int choice1, int choice2, int choice3);
+
+int playVillage(struct gameState *state, int handPos);
+
+int playTreasureMap(struct gameState *state, int handPos);
+
+
 
 
 #endif

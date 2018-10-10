@@ -808,15 +808,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case smithy:
-      //+3 Cards
-      for (i = 0; i < 3; i++)
-	{
-	  drawCard(currentPlayer, state);
-	}
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
+      return playSmithy(state, handPos);
 		
     case village:
       //+1 Card
@@ -1343,6 +1335,18 @@ int playAdventurer(struct gameState *state) {
         state->discard[currentPlayer][state->discardCount[currentPlayer]++]=tempHand[tempHandIndex-1];
         tempHandIndex--;
     }
+
+    return 0;
+}
+
+int playSmithy(struct gameState *state, int handPos) {
+    int currentPlayer = whoseTurn(state);
+
+    for (int i = 0; i < 3; i++) {
+        drawCard(currentPlayer, state);
+    }
+    discardCard(handPos, currentPlayer, state, 0);
+
 
     return 0;
 }

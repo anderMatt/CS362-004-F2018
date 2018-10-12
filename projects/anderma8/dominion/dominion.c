@@ -1277,7 +1277,6 @@ int playAdventurer(struct gameState *state) {
 
     while (tempHandIndex-1 > 0) {
         state->discard[currentPlayer][state->discardCount[currentPlayer]++]=tempHand[tempHandIndex-1];
-        tempHandIndex--;
     }
 
     return 0;

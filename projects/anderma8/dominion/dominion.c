@@ -1305,8 +1305,8 @@ int playSteward(struct gameState *state, int handPos, int choice1, int choice2, 
         state->coins += 2;
 
     } else {
-        discardCard(choice2, currentPlayer, state, 1);
-        discardCard(choice3, currentPlayer, state, 1);
+        discardCard(choice2, currentPlayer, state, 0);
+        discardCard(choice3, currentPlayer, state, 0);
     }
 
     discardCard(handPos, currentPlayer, state, 0);

@@ -1331,7 +1331,7 @@ int playTreasureMap(struct gameState *state, int handPos) {
   int retVal = -1;
 
   for (int i = 0; i < state->handCount[currentPlayer]; i++) {
-    if (state->hand[currentPlayer][i] == treasure_map && treasureMapHandIndex != handPos) {
+    if (state->hand[currentPlayer][i] == treasure_map) {
       treasureMapHandIndex = i;
       break;
     }

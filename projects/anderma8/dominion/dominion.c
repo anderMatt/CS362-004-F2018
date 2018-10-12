@@ -1286,7 +1286,7 @@ int playAdventurer(struct gameState *state) {
 int playSmithy(struct gameState *state, int handPos) {
     int currentPlayer = whoseTurn(state);
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 0; i++) {
         drawCard(currentPlayer, state);
     }
     discardCard(handPos, currentPlayer, state, 0);

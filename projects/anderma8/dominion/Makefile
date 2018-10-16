@@ -1,4 +1,5 @@
 CFLAGS= -Wall -fpic -coverage -lm -std=c99
+REPORT=unittestresults.out
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
@@ -34,7 +35,19 @@ player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
 unittest1: unittest1.c dominion.o rngs.o
-	gcc -o unittest1 $(CFLAGS) unittest1.c dominion.o rngs.o
+	gcc -o unittest1 $(CFLAGS) -g unittest1.c dominion.o rngs.o
+
+
+unittestresults.out: unittest1
+	@echo "Running Dominion Unittests" > $(REPORT)
+	@echo "***************" >> $(REPORT)
+
+	@./unittest1 >> $(REPORT)
+	@gcov dominion.c >> $(REPORT)
+
+	@echo "Completed Dominion unit tests."
+
+
 
 all: playdom player 
 

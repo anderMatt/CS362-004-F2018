@@ -37,12 +37,17 @@ player: player.c interface.o
 unittest1: unittest1.c dominion.o rngs.o
 	gcc -o unittest1 $(CFLAGS) -g unittest1.c dominion.o rngs.o
 
+unittest2: unittest2.c dominion.o rngs.o
+	gcc -o unittest2 $(CFLAGS) -g unittest2.c dominion.o rngs.o
 
-unittestresults.out: unittest1
+
+unittestresults.out: unittest1 unittest2
 	@echo "Running Dominion Unittests" > $(REPORT)
 	@echo "***************" >> $(REPORT)
 
 	@./unittest1 >> $(REPORT)
+
+	@./unittest2 >> $(REPORT)
 	@gcov dominion.c >> $(REPORT)
 
 	@echo "Completed Dominion unit tests."

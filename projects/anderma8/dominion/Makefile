@@ -40,6 +40,8 @@ unittest1: unittest1.c dominion.o rngs.o
 unittest2: unittest2.c dominion.o rngs.o
 	gcc -o unittest2 $(CFLAGS) -g unittest2.c dominion.o rngs.o
 
+unittest3: unittest3.c dominion.o rngs.o
+	gcc -o unittest3 $(CFLAGS) -g unittest3.c dominion.o rngs.o
 
 unittestresults.out: unittest1 unittest2
 	@echo "Running Dominion Unittests" > $(REPORT)
@@ -48,7 +50,11 @@ unittestresults.out: unittest1 unittest2
 	@./unittest1 >> $(REPORT)
 
 	@./unittest2 >> $(REPORT)
+
+	@./unittest3 >> $(REPORT)
+	
 	@gcov dominion.c >> $(REPORT)
+
 
 	@echo "Completed Dominion unit tests."
 

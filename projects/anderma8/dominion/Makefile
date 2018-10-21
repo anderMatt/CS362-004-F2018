@@ -56,6 +56,8 @@ cardtest1.o: cardtest1.c dominion.o rngs.o
 cardtest2.o: cardtest2.c dominion.o rngs.o
 	gcc -c cardtest2.c -g $(CFLAGS)
 
+cardtest3.o: cardtest3.c dominion.o rngs.o
+	gcc -c cardtest3.c -g $(CFLAGS)
 
 unittest1: unittest1.o dominion.o rngs.o
 	gcc -o unittest1 $(CFLAGS) -g unittest1.o dominion.o rngs.o
@@ -75,6 +77,9 @@ cardtest1: cardtest1.o dominion.o rngs.o
 cardtest2: cardtest2.o dominion.o rngs.o
 	gcc -o cardtest2 $(CFLAGS) -g cardtest2.o dominion.o rngs.o
 
+cardtest3: cardtest3.o dominion.o rngs.o
+	gcc -o cardtest3 $(CFLAGS) -g cardtest3.o dominion.o rngs.o
+
 unittestresults: unittest1 unittest2 unittest3 unittest4 cardtest1
 	@echo "Running Dominion Unittests" > $(REPORT)
 	@echo "***************" >> $(REPORT)
@@ -89,6 +94,8 @@ unittestresults: unittest1 unittest2 unittest3 unittest4 cardtest1
 	@./cardtest1 >> $(REPORT)
 
 	@./cardtest2 >> $(REPORT)
+
+	@./cardtest3 >> $(REPORT)
 
 
 	@gcov dominion.c >> $(REPORT)

@@ -51,23 +51,23 @@ unittest4.o: dominion.o rngs.o
 
 
 cardtest1.o: cardtest1.c dominion.o rngs.o
-	gcc -c cardtest1 -g $(CFLAGS)
+	gcc -c cardtest1.c -g $(CFLAGS)
 
 
 unittest1: unittest1.o dominion.o rngs.o
-	gcc -o unittest1 $(CFLAGS) -g unittest1.c dominion.o rngs.o
+	gcc -o unittest1 $(CFLAGS) -g unittest1.o dominion.o rngs.o
 
-unittest2: unittest2.c dominion.o rngs.o
-	gcc -o unittest2 $(CFLAGS) -g unittest2.c dominion.o rngs.o
+unittest2: unittest2.o dominion.o rngs.o
+	gcc -o unittest2 $(CFLAGS) -g unittest2.o dominion.o rngs.o
 
-unittest3: unittest3.c dominion.o rngs.o
-	gcc -o unittest3 $(CFLAGS) -g unittest3.c dominion.o rngs.o
+unittest3: unittest3.o dominion.o rngs.o
+	gcc -o unittest3 $(CFLAGS) -g unittest3.o dominion.o rngs.o
 
-unittest4: unittest4.c dominion.o rngs.o
-	gcc -o unittest4 $(CFLAGS) -g unittest4.c dominion.o rngs.o
+unittest4: unittest4.o dominion.o rngs.o
+	gcc -o unittest4 $(CFLAGS) -g unittest4.o dominion.o rngs.o
 
 cardtest1: cardtest1.o dominion.o rngs.o
-	gcc -o cardtest1 $(CFLAGS) -g cardtest1.c dominion.o rngs.o
+	gcc -o cardtest1 $(CFLAGS) -g cardtest1.o dominion.o rngs.o
 
 
 

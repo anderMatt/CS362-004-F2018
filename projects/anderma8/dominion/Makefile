@@ -34,7 +34,27 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-unittest1: unittest1.c dominion.o rngs.o
+unittest1.o: dominion.o rngs.o
+	gcc -c unittest1.c -g $(CFLAGS)
+
+
+unittest2.o: dominion.o rngs.o
+	gcc -c unittest2.c -g $(CFLAGS)
+
+
+unittest3.o: dominion.o rngs.o
+	gcc -c unittest3.c -g $(CFLAGS)
+
+
+unittest4.o: dominion.o rngs.o
+	gcc -c unittest4.c -g $(CFLAGS)
+
+
+cardtest1.o: cardtest1.c dominion.o rngs.o
+	gcc -c cardtest1 -g $(CFLAGS)
+
+
+unittest1: unittest1.o dominion.o rngs.o
 	gcc -o unittest1 $(CFLAGS) -g unittest1.c dominion.o rngs.o
 
 unittest2: unittest2.c dominion.o rngs.o
@@ -46,18 +66,24 @@ unittest3: unittest3.c dominion.o rngs.o
 unittest4: unittest4.c dominion.o rngs.o
 	gcc -o unittest4 $(CFLAGS) -g unittest4.c dominion.o rngs.o
 
+cardtest1: cardtest1.o dominion.o rngs.o
+	gcc -o cardtest1 $(CFLAGS) -g cardtest1.c dominion.o rngs.o
 
-unittestresults: unittest1 unittest2
+
+
+unittestresults: unittest1 unittest2 unittest3 unittest4 cardtest1
 	@echo "Running Dominion Unittests" > $(REPORT)
 	@echo "***************" >> $(REPORT)
 
 	@./unittest1 >> $(REPORT)
 
 	@./unittest2 >> $(REPORT)
-
 	@./unittest3 >> $(REPORT)
 
 	@./unittest4 >> $(REPORT)
+
+	@./cardtest1 >> $(REPORT)
+
 
 	@gcov dominion.c >> $(REPORT)
 
@@ -69,4 +95,5 @@ unittestresults: unittest1 unittest2
 all: playdom player 
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe unittest1 unittest2 unittest3 unittest4 cardeffect1
+

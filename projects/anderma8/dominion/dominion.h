@@ -129,6 +129,9 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
    1, others to 0 */
 
 
+// Add prototype for unit tests.
+int cardEffect(int card, int c1, int c2, int c3, struct gameState *state, int handPos, int *bonus);
+
 
 /*
  * Refactored card effects

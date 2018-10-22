@@ -7,6 +7,9 @@ rngs.o: rngs.h rngs.c
 dominion.o: dominion.h dominion.c rngs.o
 	gcc -c dominion.c -g  $(CFLAGS)
 
+testhelpers.o: testhelpers.c
+	gcc -c testhelpers.c -g $(CFLAGS)
+
 playdom: dominion.o playdom.c
 	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
 #To run playdom you need to entere: ./playdom <any integer number> like ./playdom 10*/
@@ -59,7 +62,7 @@ cardtest2.o: cardtest2.c dominion.o rngs.o
 cardtest3.o: cardtest3.c dominion.o rngs.o
 	gcc -c cardtest3.c -g $(CFLAGS)
 
-cardtest4.o: cardtest4.c dominion.o rngs.o
+cardtest4.o: cardtest4.c dominion.o rngs.o testhelpers.o
 	gcc -c cardtest4.c -g $(CFLAGS)
 
 unittest1: unittest1.o dominion.o rngs.o
@@ -84,7 +87,7 @@ cardtest3: cardtest3.o dominion.o rngs.o
 	gcc -o cardtest3 $(CFLAGS) -g cardtest3.o dominion.o rngs.o
 
 cardtest4: cardtest4.o dominion.o rngs.o
-	gcc -o cardtest4 $(CFLAGS) -g cardtest4.o dominion.o rngs.o
+	gcc -o cardtest4 $(CFLAGS) -g cardtest4.o dominion.o rngs.o testhelpers.o
 
 unittestresults: unittest1 unittest2 unittest3 unittest4 cardtest1
 	@echo "Running Dominion Unittests" > $(REPORT)

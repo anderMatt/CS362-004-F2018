@@ -22,6 +22,7 @@ void init_state(struct gameState *state) {
     state->deckCount[player] = 5;
     state->discardCount[player] = 0;
     state->handCount[player] = 1;
+    state->playedCardCount = 0;
 
     int hand[][3] = {
             {5, 5, 5},

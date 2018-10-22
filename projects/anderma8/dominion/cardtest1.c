@@ -20,8 +20,10 @@ void init_state(struct gameState *state) {
     state->whoseTurn = player;
     state->numPlayers = 3;
     state->deckCount[player] = 5;
+    state->deckCount[player+1] = 5;
     state->discardCount[player] = 0;
     state->handCount[player] = 1;
+    state->handCount[player+1] = 3;
     state->playedCardCount = 0;
 
     int hand[][3] = {
@@ -72,6 +74,22 @@ int main(int argn, char **argv) {
     actual = state.handCount[player];
     memset(errMsg, '\0', 100);
     snprintf(errMsg, 100, "Expected hand to contains %i cards. Actually contains %i cards.", expected, actual);
+    report_results(expected, actual, errMsg);
+
+    puts("Other players' hand state remain unchanged.");
+    memset(errMsg, '\0', 100);
+    snprintf(errMsg, 100, "Expected opponent's hand to contain %i cards. Actually contains %i cards.", expected, actual);
+    expected = 3;
+    actual = state.handCount[1];
+
+    report_results(expected, actual, errMsg);
+
+    puts("Other players' deck state remain unchanged.");
+    memset(errMsg, '\0', 100);
+    snprintf(errMsg, 100, "Expected opponent's deck to contain %i cards. Actually contains %i cards.", expected, actual);
+    expected = 5;
+    actual = state.deckCount[1];
+
     report_results(expected, actual, errMsg);
 
 

@@ -36,9 +36,9 @@ void init_state(struct gameState *state) {
 
 void report_results(int expected, int actual, char *errMessage) {
     if (expected == actual) {
-        puts("\tPassed.");
+        puts("\t\tPassed.");
     } else {
-        printf("\tFailed. %s\n", errMessage);
+        printf("\t\tFailed. %s\n", errMessage);
     }
 }
 
@@ -59,11 +59,14 @@ int main(int argn, char **argv) {
     expected = 2;
     actual = state.deckCount[player];
 
+    puts("\tCards drawn from active player's deck.");
+
     char errMsg[100];
     memset(errMsg, '\0', 100);
-    snprintf(errMsg, 100, "Expected deck to contain %i cards. Actually contains %i cards.", expected, actual);
+    snprintf(errMsg, 100, "\tExpected deck to contain %i cards. Actually contains %i cards.", expected, actual);
     report_results(expected, actual, errMsg);
 
+    puts("\tCards added to active player's hand.");
     // Hand count should be 3 - stated at one, draw three cards, then discard the Smithy.
     expected = 3;
     actual = state.handCount[player];

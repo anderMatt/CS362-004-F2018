@@ -7,6 +7,7 @@ CS 362 - Assignment 3
 #include <stdio.h>
 #include <string.h>
 #include "dominion.h"
+#include "testhelpers.h"
 
 /*
  * Unit tests for Adventurer
@@ -19,7 +20,7 @@ void init_state(struct gameState *state) {
 
     state->whoseTurn = player;
     state->numPlayers = 3;
-    state->deckCount[player] = 6;
+    state->deckCount[player] = 8;
     state->discardCount[player] = 0;
     state->handCount[player] = 1;
     int deck[] = {copper, adventurer, smithy, salvager, gold, outpost, duchy, treasure_map};
@@ -35,23 +36,6 @@ void init_state(struct gameState *state) {
     memcpy(state->hand, hand, sizeof(hand));
 }
 
-int hand_contains(struct gameState *state, int player, int card) {
-    for(int i = 0; i < state->handCount[player]; i++) {
-        if (state->hand[player][i] == card) {
-            return 1;  // Contains card.
-        }
-    }
-
-    return 0;  // Does not contain card.
-}
-
-void report_result(int expected, int actual, char *errMessage) {
-    if (expected == actual) {
-        puts("\tPassed.");
-    } else {
-        printf("\tFailed. %s\n", errMessage);
-    }
-}
 
 int main(int argn, char **argv) {
     struct gameState state;
@@ -83,19 +67,32 @@ int main(int argn, char **argv) {
     snprintf(errMsg, 100, "Expected hand to contain Gold, but it does not");
     report_result(1, containsTreasure, errMsg);
 
+    puts("All drawn cards removed from deck.");
+    int expected = 3;
+    int actual = state.deckCount[player];
+    snprintf(errMsg, 100, "Expected deck to contain %i cards. Actually cards %i cards", expected, actual);
+    report_result(expected, actual, errMsg);
+
+
 
     // Make sure the non-treasure cards were discarded.
 
     puts("Non-treasure cards drawn are discarded.");
+
+    puts("\tSalvager discarded.");
     int containsNonTreasure = hand_contains(&state, player, salvager);
     memset(errMsg, '\0', 100);
     snprintf(errMsg, 100, "Non-treasure card not discarded: Salvager");
     report_result(0, containsNonTreasure, errMsg);
 
+    puts("\tAdventurer discarded.");
+
     containsNonTreasure = hand_contains(&state, player, adventurer);
     memset(errMsg, '\0', 100);
     snprintf(errMsg, 100, "Non-treasure card not discarded: Adventurer");
     report_result(0, containsNonTreasure, errMsg);
+
+    puts("\tSmithy discarded.");
 
     containsNonTreasure = hand_contains(&state, player, smithy);
     memset(errMsg, '\0', 100);

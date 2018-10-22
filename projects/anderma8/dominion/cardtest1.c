@@ -7,7 +7,6 @@ CS 362 - Assignment 3
 #include <stdio.h>
 #include <string.h>
 #include "dominion.h"
-#include "testhelpers.h"
 
 /*
  * Unit tests for Smithy

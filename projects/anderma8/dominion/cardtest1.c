@@ -7,7 +7,7 @@ CS 362 - Assignment 3
 #include <stdio.h>
 #include <string.h>
 #include "dominion.h"
-
+#include "testhelpers.h"
 /*
  * Unit tests for Smithy
  *
@@ -50,16 +50,21 @@ int main(int argn, char **argv) {
     expected = 2;
     actual = state.deckCount[player];
 
+    puts("\tCard were drawn from active player's deck.");
+
     char errMsg[100];
     memset(errMsg, '\0', 100);
-    snprintf(errMsg, 100, "Expected deck to contain %i cards. Actually contains %i cards.", expected, actual);
+    snprintf(errMsg, 100, "\tExpected deck to contain %i cards. Actually contains %i cards.", expected, actual);
     report_result(expected, actual, errMsg);
 
     // Hand count should be 3 - stated at one, draw three cards, then discard the Smithy.
+
+    puts("\tCards were added to hand");
+
     expected = 3;
     actual = state.handCount[player];
     memset(errMsg, '\0', 100);
-    snprintf(errMsg, 100, "Expected hand to contains %i cards. Actually contains %i cards.", expected, actual);
+    snprintf(errMsg, 100, "\tExpected hand to contains %i cards. Actually contains %i cards.", expected, actual);
     report_result(expected, actual, errMsg);
 
 

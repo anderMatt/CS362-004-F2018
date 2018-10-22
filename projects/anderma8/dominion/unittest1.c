@@ -25,7 +25,7 @@ void state_set_hand(struct gameState *state, int *newHand, int handSize) {
 }
 
 
-void report_result(int expected, int actual) {
+void report_results(int expected, int actual) {
     if (expected == actual) {
         puts("\tPassed.");
     } else {
@@ -58,7 +58,7 @@ int main(int argn, char **argv) {
 
     expected = 0;
     actual = state.coins;
-    report_result(expected, actual);
+    report_results(expected, actual);
 
 
     /***** Condition: Player has no coins in hand. *****/
@@ -73,7 +73,7 @@ int main(int argn, char **argv) {
 
     expected = 0;
     actual = state.coins;
-    report_result(expected, actual);
+    report_results(expected, actual);
 
 
     /***** Condition: Player has coins in hand. *****/
@@ -88,7 +88,7 @@ int main(int argn, char **argv) {
 
     expected = 10;
     actual = state.coins;
-    report_result(expected, actual);
+    report_results(expected, actual);
 
     /***** Condition: Bonus is counted. *****/
     puts("\nPlayer has a bonus.");
@@ -98,7 +98,7 @@ int main(int argn, char **argv) {
     expected = 11;
     actual = state.coins;
 
-    report_result(expected, actual);
+    report_results(expected, actual);
 
     // End of tests.
 

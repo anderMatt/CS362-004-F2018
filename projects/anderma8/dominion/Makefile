@@ -8,7 +8,7 @@ dominion.o: dominion.h dominion.c rngs.o
 	gcc -c dominion.c -g  $(CFLAGS)
 
 testhelpers.o: testhelpers.c
-	gcc -c testhelpers.c -g $(CFLAGS)
+	gcc -c testhelpers.c $(CFLAGS)
 
 playdom: dominion.o playdom.c
 	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
@@ -89,7 +89,7 @@ cardtest3: cardtest3.o dominion.o rngs.o
 cardtest4: cardtest4.o dominion.o rngs.o
 	gcc -o cardtest4 $(CFLAGS) -g cardtest4.o dominion.o rngs.o testhelpers.o
 
-unittestresults: unittest1 unittest2 unittest3 unittest4 cardtest1
+unittestresults: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 	@echo "Running Dominion Unittests" > $(REPORT)
 	@echo "***************" >> $(REPORT)
 

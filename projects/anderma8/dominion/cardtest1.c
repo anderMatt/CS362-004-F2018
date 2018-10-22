@@ -7,6 +7,7 @@ CS 362 - Assignment 3
 #include <stdio.h>
 #include <string.h>
 #include "dominion.h"
+#include "testhelpers.h"
 
 /*
  * Unit tests for Smithy
@@ -32,14 +33,6 @@ void init_state(struct gameState *state) {
     memcpy(state->hand, hand, sizeof(hand));
 }
 
-
-void report_result(int expected, int actual, char *errMessage) {
-    if (expected == actual) {
-        puts("\tPassed.");
-    } else {
-        printf("\tFailed. %s\n", errMessage);
-    }
-}
 
 int main(int argn, char **argv) {
     struct gameState state;

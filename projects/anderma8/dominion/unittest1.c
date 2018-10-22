@@ -7,6 +7,7 @@ CS 362 - Assignment 3
 #include <stdio.h>
 #include <string.h>
 #include "dominion.h"
+#include "dominion_helpers.h"
 
 /*
  * Unit tests for updateCoins

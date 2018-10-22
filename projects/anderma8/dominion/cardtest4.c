@@ -45,9 +45,9 @@ void init_state(struct gameState *state) {
 
 void report_result(int expected, int actual, char *errMessage) {
     if (expected == actual) {
-        puts("\tPassed.");
+        puts("\t\tPassed.");
     } else {
-        printf("\tFailed. %s\n", errMessage);
+        printf("\t\tFailed. %s\n", errMessage);
     }
 }
 
@@ -63,7 +63,7 @@ int main(int argn, char **argv) {
     puts("**********\nUnit Tests for 'Treasure Map'\n**********\n");
 
     puts("Hand contains no other Treasure Maps.");
-    
+
     int hand[] = {
             treasure_map, baron, smithy
     };
@@ -81,6 +81,8 @@ int main(int argn, char **argv) {
 
     puts("Hand contains one other Treasure Map.");
 
+    puts("\t4 Gold added to deck.");
+
     init_state(&state);
     int treasureMapHand[] = {treasure_map, baron, treasure_map};
     setHand(&state, player, treasureMapHand, 3);
@@ -91,7 +93,15 @@ int main(int argn, char **argv) {
     snprintf(errMsg, 100, "Expected deck to contain %i Gold. Actually contains: %i Gold", expected, actual);
     report_result(expected, actual, errMsg);
 
+    puts("\tTreasure Map cards are trashed.");
+    expected = 0;
+    actual = hand_contains(&state, player, 0);
+    snprintf(errMsg, 100, "Expected hand to contain no Treasure Maps. Actually contains: %i", actual);
+    report_result(expected, actual, errMsg);
+
     puts("Hand contains more than one other Treasure Map.");
+
+    puts("\t 4 Gold added to deck.");
 
     init_state(&state);
     int multiTreasureMapHand[] = {treasure_map, treasure_map, treasure_map};
@@ -100,6 +110,12 @@ int main(int argn, char **argv) {
     expected = 4;
     actual = deck_count_card(&state, player, gold);
     snprintf(errMsg, 100, "Expected deck to contain %i Gold. Actually contains: %i Gold", expected, actual);
+    report_result(expected, actual, errMsg);
+
+    puts("\t Two Treasure Maps trashed from hand.");
+    expected = 1;
+    actual = hand_count_card(&state, player, treasure_map);
+    snprintf(errMsg, 100, "Expected hand to contain one Treasure Map. Actually contains: %i", actual);
     report_result(expected, actual, errMsg);
 
 

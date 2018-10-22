@@ -12,6 +12,9 @@ CS 362 - Assignment 3
 // Test is given player's hand contains a given card.
 int hand_contains(struct gameState *state, int player, int card);
 
+// Counts how many copies of a card are in a given player's hand.
+int hand_count_card(struct gameState *state, int player, int card);
+
 // Replaces the given player's hand.
 void setHand(struct gameState *state, int player, int newHand[], int size);
 

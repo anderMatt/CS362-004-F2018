@@ -24,4 +24,6 @@ int deck_count_card(struct gameState *state, int player, int card);
 // Returns 1 if count copies exist in given player's deck. Else, return 0.
 int deck_contains_card_exact(struct gameState *state, int player, int card, int count);
 
+void report_result(int expected, int actual, char *errMsg);
+
 #endif

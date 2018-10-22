@@ -4,6 +4,8 @@ Matthew Anderson
 CS 362 - Assignment 3
 *************************/
 
+#include <stdio.h>
+
 #include "dominion.h"
 #include "testhelpers.h"
 #include "string.h"
@@ -54,4 +56,12 @@ int deck_contains_card_exact(struct gameState *state, int player, int card, int 
     }
 
     return (counter == count);
+}
+
+void report_result(int expected, int actual, char *errMessage) {
+    if (expected == actual) {
+        puts("\t\tPassed.");
+    } else {
+        printf("\t\tFailed. %s\n", errMessage);
+    }
 }

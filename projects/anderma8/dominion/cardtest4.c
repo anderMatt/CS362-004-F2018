@@ -43,14 +43,6 @@ void init_state(struct gameState *state) {
 }
 
 
-void report_result(int expected, int actual, char *errMessage) {
-    if (expected == actual) {
-        puts("\t\tPassed.");
-    } else {
-        printf("\t\tFailed. %s\n", errMessage);
-    }
-}
-
 int main(int argn, char **argv) {
     struct gameState state;
     init_state(&state);

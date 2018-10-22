@@ -7,6 +7,7 @@ CS 362 - Assignment 3
 #include <stdio.h>
 #include <string.h>
 #include "dominion.h"
+#include "testhelpers.h"
 
 /*
  * Unit tests for isGameOver
@@ -15,23 +16,6 @@ CS 362 - Assignment 3
  * the current game state.
  *
  */
-
-/********** Helpers **********/
-
-void report_result(int expected, int actual, char *errMessage) {
-    if (expected == actual) {
-        puts("\tPassed.");
-    } else {
-        printf("\tFailed. %s", errMessage);
-    }
-}
-
-void replenish_supply_count(struct gameState *state) {
-    for (int i = 0; i < 25; i++) {
-        state->supplyCount[i] = i+1;
-    }
-}
-
 
 
 int main(int argn, char **argv) {

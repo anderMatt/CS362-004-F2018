@@ -26,4 +26,7 @@ int deck_contains_card_exact(struct gameState *state, int player, int card, int 
 
 void report_result(int expected, int actual, char *errMsg);
 
+// Refills all supply counts.
+void replenish_supply_count(struct gameState *state);
+
 #endif

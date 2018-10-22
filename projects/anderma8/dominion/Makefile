@@ -49,7 +49,7 @@ unittest3.o: dominion.o rngs.o
 	gcc -c unittest3.c -g $(CFLAGS)
 
 
-unittest4.o: dominion.o rngs.o
+unittest4.o: dominion.o rngs.o testhelpers.o
 	gcc -c unittest4.c -g $(CFLAGS)
 
 
@@ -75,7 +75,7 @@ unittest3: unittest3.o dominion.o rngs.o
 	gcc -o unittest3 $(CFLAGS) -g unittest3.o dominion.o rngs.o
 
 unittest4: unittest4.o dominion.o rngs.o
-	gcc -o unittest4 $(CFLAGS) -g unittest4.o dominion.o rngs.o
+	gcc -o unittest4 $(CFLAGS) -g unittest4.o dominion.o rngs.o testhelpers.o
 
 cardtest1: cardtest1.o dominion.o rngs.o testhelpers.o
 	gcc -o cardtest1 $(CFLAGS) -g cardtest1.o dominion.o rngs.o testhelpers.o

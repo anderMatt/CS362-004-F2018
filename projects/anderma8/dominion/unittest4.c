@@ -7,6 +7,7 @@ CS 362 - Assignment 3
 #include <stdio.h>
 #include <string.h>
 #include "dominion.h"
+#include "testhelpers.h"
 
 /*
  * Unit tests for buyCard
@@ -16,21 +17,6 @@ CS 362 - Assignment 3
  *
  */
 
-/********** Helpers **********/
-
-void report_result(int expected, int actual, char *errMessage) {
-    if (expected == actual) {
-        puts("\tPassed.");
-    } else {
-        printf("\tFailed. %s\n", errMessage);
-    }
-}
-
-void replenish_supply_count(struct gameState *state) {
-    for (int i = 0; i < 25; i++) {
-        state->supplyCount[i] = i+1;
-    }
-}
 
 int main(int argn, char **argv) {
     struct gameState state;
@@ -79,10 +65,7 @@ int main(int argn, char **argv) {
     state.supplyCount[supplyIndex] = 2;
     state.numBuys = 1;
 
-    // Buy card should succeed.
-//    printf("BEFORE BUY: %i", state.coins);
     int success = buyCard(supplyIndex, &state);
-//    printf("AFTER BUY: %i", state.coins);
 
     if (success != 0) {
         puts("\t Failed: Unable to buy card.");
@@ -95,7 +78,7 @@ int main(int argn, char **argv) {
 
     }
 
-    puts("Buying card correctly decreases availabe buys.");
+    puts("Buying card correctly decreases available buys.");
     expected = 0;
     actual = state.numBuys;
     char errMsg[50];

@@ -58,6 +58,13 @@ int deck_contains_card_exact(struct gameState *state, int player, int card, int 
     return (counter == count);
 }
 
+void replenish_supply_count(struct gameState *state) {
+    for (int i = 0; i < 25; i++) {
+        state->supplyCount[i] = 10;
+    }
+}
+
+
 void report_result(int expected, int actual, char *errMessage) {
     if (expected == actual) {
         puts("\t\tPassed.");

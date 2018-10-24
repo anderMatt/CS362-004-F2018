@@ -26,7 +26,7 @@ make unittestresults
 or, make this change to playAdventurer in dominion.c:
 
 ```c
-	while (tempHandIndex01 > 0 {
+	while (tempHandIndex - 1 > 0 {
 		.
 		.
 		.

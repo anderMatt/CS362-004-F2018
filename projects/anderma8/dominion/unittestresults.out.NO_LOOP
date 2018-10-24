@@ -1,0 +1,113 @@
+Running Dominion Unittests
+***************
+**********
+Unit Tests for 'updateCoins'
+**********
+
+Player has an empty hand
+	Passed.
+
+Player has no coins in hand
+	Passed.
+
+Player has coins in hand.
+	Passed.
+
+Player has a bonus.
+	Passed.
+
+**********
+**********
+Unit Tests for 'numHandCards'
+**********
+
+Player has no cards in hand.
+		Passed.
+Player has maximum number of cards in hand.
+		Passed.
+**********
+Unit Tests for 'isGameOver'
+**********
+
+No provinces remaining: game over
+		Passed.
+Three supply lines depleted: game over.
+		Passed.
+No empty supply lines. Provinces still remaining: game not over.
+		Passed.
+Two supply lines depleted: game not over.
+		Passed.
+**********
+Unit Tests for 'buyCard'
+**********
+
+Player has no remaining buys.
+		Passed.
+Supply is empty
+		Passed.
+Player does not have enough coins.
+		Passed.
+Buying card correctly decreases available coins.
+		Passed.
+Buying card correctly decreases available buys.
+		Passed.
+**********
+Unit Tests for 'Smithy'
+**********
+
+Draws three cards from the deck.
+	Cards drawn from active player's deck.
+		Failed. 	Expected deck to contain 2 cards. Actually contains 5 cards.
+	Cards added to active player's hand.
+		Failed. Expected hand to contains 3 cards. Actually contains 0 cards.
+Other players' hand state remain unchanged.
+		Passed.
+Other players' deck state remain unchanged.
+		Passed.
+**********
+Unit Tests for 'Adventurer'
+**********
+
+Drawn Copper added to hand.
+		Passed.
+Drawn Gold added to hand.
+		Passed.
+All drawn cards removed from deck.
+		Failed. Expected deck to contain 3 cards. Actually cards 0 cards
+Non-treasure cards drawn are discarded.
+	Salvager discarded.
+		Passed.
+	Adventurer discarded.
+		Passed.
+	Smithy discarded.
+		Passed.
+**********
+Unit Tests for 'Great Hall'
+**********
+
+Player gains one action gained.
+		Passed.
+Player draws one card.
+		Passed.
+	 Card was drawn from active player's deck.
+		Passed.
+**********
+Unit Tests for 'Treasure Map'
+**********
+
+Hand contains no other Treasure Maps.
+		Failed. Expected deck to contain 0 Gold. Actually contains: 4 Gold
+Hand contains one other Treasure Map.
+	4 Gold added to deck.
+		Passed.
+	Treasure Map cards are trashed.
+		Passed.
+Hand contains more than one other Treasure Map.
+	 4 Gold added to deck.
+		Passed.
+	 Two Treasure Maps trashed from hand.
+		Passed.
+File 'dominion.c'
+Lines executed:18.84% of 653
+dominion.c:creating 'dominion.c.gcov'
+

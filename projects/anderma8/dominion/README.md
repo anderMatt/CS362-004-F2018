@@ -33,3 +33,5 @@ or, make this change to playAdventurer in dominion.c:
 		tempHandIndex--;  // ADD THIS.
 }
 ```
+
+Copy of *unittestresults.out* with this fix in place has also been included in the repository for reference - *unittestresults.out.NO_LOOP

@@ -3,16 +3,25 @@
 #include<stdlib.h>
 #include<time.h>
 
+
+static const char *INPUT_SET = "[({ ax})]rest";
+static const int TARGET_LENGTH = 5;
+
 char inputChar()
 {
-    // TODO: rewrite this function
-    return ' ';
+    int index = rand() % strlen(INPUT_SET);
+    return INPUT_SET[index];
 }
 
 char *inputString()
 {
-    // TODO: rewrite this function
-    return "";
+    char *generatedString = malloc(sizeof(char) * TARGET_LENGTH + 1);  // Need to allocate space for null-terminator.
+    for(int i = 0; i < TARGET_LENGTH; i++) {
+      generatedString[i] = inputChar();
+    }
+    generatedString[TARGET_LENGTH + 1] = '\0';  // malloc doesn't initialize any blocks.
+
+    return generatedString;
 }
 
 void testme()

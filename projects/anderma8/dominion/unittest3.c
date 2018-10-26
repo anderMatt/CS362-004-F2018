@@ -67,4 +67,6 @@ int main(int argn, char **argv) {
     gameOver = isGameOver(&state);
     report_result(0, gameOver, "Game should not be over.");
 
+    return 0;
+
 }

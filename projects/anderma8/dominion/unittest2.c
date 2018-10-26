@@ -50,4 +50,6 @@ int main(int argn, char **argv) {
 
     report_result(expected, actual, errMsg);
 
+    return 0;
+
 }

@@ -84,4 +84,6 @@ int main(int argn, char **argv) {
     char errMsg[50];
     sprintf(errMsg, "Expected buys remaining: %i, but actual was: %i", expected, actual);
     report_result(expected, actual, errMsg);
+
+    return 0;
 }

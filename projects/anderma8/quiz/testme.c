@@ -1,3 +1,12 @@
+/**************************************************
+Matthew Anderson
+10/30/18
+CS 362 - Random Testing Generator
+
+Example of a random test generator. Goal is to
+randomly generate characters and a string until
+the desired output is encountered: "reset".
+**************************************************/
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -7,12 +16,19 @@
 static const char *INPUT_SET = "[({ ax})]rest";
 static const int TARGET_LENGTH = 5;
 
+/*
+Returns a random character from the possible input set.
+*/
 char inputChar()
 {
     int index = rand() % strlen(INPUT_SET);
     return INPUT_SET[index];
 }
 
+/*
+Returns a random string of length TARGET_LENGTH
+using characters from the input set.
+*/
 char *inputString()
 {
     char *generatedString = malloc(sizeof(char) * TARGET_LENGTH + 1);  // Need to allocate space for null-terminator.

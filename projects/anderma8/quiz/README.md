@@ -2,9 +2,9 @@
 
 ## Execution
 
-```bash
-$ make clean
+Run the following commands from the command line:
+
+```
 $ make
 $ ./testme
 ```
-

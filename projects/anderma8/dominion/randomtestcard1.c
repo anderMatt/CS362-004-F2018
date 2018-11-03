@@ -44,7 +44,7 @@ int main(int argn, char **argv) {
     puts("\tPlayer gains one action.");
 
     int numActions = state.numActions;
-    report_result(startingActions+1, numActions, "\t\t*FAILED* Expected to have %i actions. Actually have %i actions\n");
+    report_result(startingActions+2, numActions, "\t\t*FAILED* Expected to have %i actions. Actually have %i actions\n");
 
     // Play a random number of villages in a turn.
     puts("\tMultiple Village effects accumulate.");

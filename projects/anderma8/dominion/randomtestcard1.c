@@ -7,14 +7,17 @@
 **************************************************/
 
 #include <stdio.h>
+#include <math.h>
+#include <assert.h>
+#include <string.h>
 
 #include "dominion.h"
 #include "testhelpers.h"
 #include "rngs.h"
 
 int main(int argn, char **argv) {
-    SelectStream(2);
     PutSeed(3);
+    SelectStream(2);
 
     struct gameState state;
     game_state_initialize_random(&state);
@@ -44,16 +47,20 @@ int main(int argn, char **argv) {
     report_result(startingActions+1, numActions, "\t\t*FAILED* Expected to have %i actions. Actually have %i actions\n");
 
     // Play a random number of villages in a turn.
+    puts("\tMultiple Village effects accumulate.");
+    struct gameState preState;
+    memcpy(&state, &preState, sizeof(struct gameState));
 
+    int startingActionCount = state.numActions;
+    numActions = floor(Random() * MAX_HAND);  // Maximum number of villages that could theoretically be played.
+    for(int i = 0; i < numActions; i++) {
+        playVillage(&state, pos);
+    }
 
-
-
-
-    
-
+    int afterActionCount = state.numActions;
+    // Ensure there were no unintended sideffects
+    assert(memcmp(&preState, &state, sizeof(struct gameState)) == 0);
+    report_result(startingActionCount + numActions, afterActionCount, "\t\t*FAILED* Expected action count to be %i, but is actually %i\n");
 
     return 0;
-
-    // +1 card
-    // +2 actions
 }

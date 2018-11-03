@@ -45,9 +45,16 @@ randomtestcard1.o: randomtestcard1.c testhelpers.o dominion.o rngs.o
 randomtestcard1: randomtestcard1.o dominion.o rngs.o testhelpers.o
 	gcc -o randomtestcard1 $(CFLAGS) -g randomtestcard1.o dominion.o rngs.o testhelpers.o
 
+randomtestcard1.out: randomtestcard1
+	@echo "Executing randomtestcard1..."
+	@./randomtestcard1 > randomtestcard1.out
+	@gcov dominion.c >> randomtestcard1.out
+	@cat dominion.c.gcov >> randomtestcard1.out
+	@echo "Test results written to 'randomtestcard1.out'"
+
 # randomtestcard1.out
 
 all: playdom player 
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe *.out

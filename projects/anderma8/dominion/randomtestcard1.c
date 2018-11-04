@@ -33,8 +33,7 @@ int main(int argn, char **argv) {
     int pos = state.handCount[player] - 2;
     state.hand[player][pos] = village;
 
-    playVillage(&state, pos);
-
+    cardEffect(village, 0, 0, 0, &state, pos, NULL);
     // Correct card was drawn, from correct player's deck.
     puts("\tCard is drawn from current player's deck.");
 

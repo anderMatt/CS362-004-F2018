@@ -12,7 +12,7 @@
 /*
 Sets the given players hand to a random selection of cards.
 */
-void game_state_set_hand(struct gameState *state, int player, int handSize);
+void game_state_set_hand_random(struct gameState *state, int player, int handSize);
 
 /*
 Initializes a game with randomized state.

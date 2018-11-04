@@ -7,4 +7,6 @@
 ```bash
 $ make clean
 $ make randomtestcard1.out  // Results written to 'randomtestcard1.out'
+
+$ make randomtestcard2.out // Results written to 'randomtestcard2.out'
 ```

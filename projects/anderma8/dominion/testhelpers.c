@@ -64,3 +64,12 @@ void report_result(int expected, int actual, char *errMsg) {
         printf(errMsg, expected, actual);
     }
 }
+
+int game_state_is_equal(struct gameState *pre, struct gameState *post, char *errMsg) {
+    if(memcmp(pre, post, sizeof(struct gameState)) != 0) {
+        puts(errMsg);
+        return 0;  // Not equal.
+    }
+
+    return 1;
+}

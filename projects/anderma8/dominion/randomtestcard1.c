@@ -58,7 +58,8 @@ int main(int argn, char **argv) {
 
     int afterActionCount = state.numActions;
     // Ensure there were no unintended sideffects
-    assert(memcmp(&preState, &state, sizeof(struct gameState)) == 0);
+    // assert(memcmp(&preState, &state, sizeof(struct gameState)) == 0);
+    game_state_is_equal(&preState, &state, "Game states are not equal");
     report_result(startingActionCount + numActions, afterActionCount, "\t\t*FAILED* Expected action count to be %i, but is actually %i\n");
 
     return 0;

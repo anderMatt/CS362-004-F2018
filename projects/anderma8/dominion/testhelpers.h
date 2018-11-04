@@ -25,4 +25,9 @@ Checks that expected == actual. If false, reports an error.
 
 void report_result(int expected, int actual, char *errMsg);
 
+/*
+Checks if the game states pointed to by pre and post are equal. If
+not, prints the error message and returns 0. Else, returns 1.
+*/
+int game_state_is_equal(struct gameState *pre, struct gameState *post, char *errMsg);
 #endif

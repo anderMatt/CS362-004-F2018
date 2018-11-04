@@ -53,7 +53,7 @@ int main(int argn, char **argv) {
     int startingActionCount = state.numActions;
     numActions = floor(Random() * MAX_HAND);  // Maximum number of villages that could theoretically be played.
     for(int i = 0; i < numActions; i++) {
-        playVillage(&state, pos);
+        cardEffect(village, 0, 0, 0, &state, pos, NULL);
     }
 
     int afterActionCount = state.numActions;

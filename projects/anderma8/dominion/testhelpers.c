@@ -75,13 +75,13 @@ void game_state_initialize_random_full(struct gameState *state) {
     // Player deck
     int playerDeck[10];
     for (int j = 0; j < 10; j++) {
-        playerDeck[j] = council_room + j;
+        playerDeck[j] = get_random_dominion_card();
     }
 
     // Player discard pile
     int playerDiscard[5];
     for (int k = 0; k < 5; k++) {
-        playerDiscard[k] = great_hall + k;
+        playerDiscard[k] = get_random_dominion_card();
     }
 
 
@@ -89,9 +89,9 @@ void game_state_initialize_random_full(struct gameState *state) {
     state->handCount[0] = 10;
     state->deckCount[0] = 10;
     state->discardCount[0] = 5;
-    memcpy(state->hand[0], kingdomCards, sizeof(int) * state->handCount[0]);
+    memcpy(state->hand[0], kingdomCards, sizeof(int) * floor(Random() * MAX_HAND));
     memcpy(state->deck[0], playerDeck, sizeof(int) * state->deckCount[0]);
-    memcpy(state->discard[0], playerDiscard, sizeof(int) * 5);
+    memcpy(state->discard[0], playerDiscard, sizeof(int) * floor(Random() * MAX_HAND));
 
     // Now, set the second player's state variables
     state->handCount[1] = 10;

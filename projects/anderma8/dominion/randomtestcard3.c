@@ -24,66 +24,20 @@ int main(int argn, char **argv) {
 
     puts("*** Adventurer random tests ***");
 
-    // Check card is drawn.
-    int player = state.whoseTurn;
-    int cardToDraw = state.deck[player][0];
-    int startingActions = state.numActions;
-
-    // Add Great Hall to hand.
-    int pos = state.handCount[player] - 2;
-    state.hand[player][pos] = great_hall;
-
-    cardEffect(great_hall, 0, 0, 0, &state, pos, NULL);
-    // Correct card was drawn, from correct player's deck.
     puts("\t 2 or more treasure are in the player's deck");
+    int player = 0;
 
-    int cardDrawn = state.hand[player][state.handCount[player]-1];
-    report_result(cardToDraw, cardDrawn, "\t\t*FAILED* Expected to draw card %i. Actually drew card: %i\n");
+    // Need to make sure there are at least 2 treasure cards in deck - add manually
+    // here to skew the random percentages.
+    state.deck[0][player] = copper;
+    state.deck[0][player] = gold;
 
-    puts("\tGreat Hall grants player one action.");
+    int startingHandSize = state.handCount[player];
+    cardEffect(adventurer, 0, 0, 0, &state, 0, NULL);
+    int afterHandSize = state.handCount[player];
+    int expectedHandSize = startingHandSize + 1;
+    report_result(expectedHandSize, afterHandSize, "\t\tExpected hand to contain %i cards. Actually contains %i cards");
 
-    int numActions = state.numActions;
-    report_result(startingActions+1, numActions, "\t\t*FAILED* Expected to have %i actions. Actually have %i actions\n");
-
-    // Play a random number of Great Halls in a turn.
-    puts("\tPlaying multiple Great Halls in a single turns accumlates the effect.");
-    struct gameState preState;
-    memcpy(&state, &preState, sizeof(struct gameState));
-
-    int startingActionCount = state.numActions;
-    numActions = floor(Random() * MAX_HAND);  // Maximum number of Great Halls that could theoretically be played.
-    for(int i = 0; i < numActions; i++) {
-        cardEffect(great_hall, 0, 0, 0, &state, pos, NULL);
-        
-    }
-
-    int afterActionCount = state.numActions;
-    // Ensure there were no unintended sideffects
-    // assert(memcmp(&preState, &state, sizeof(struct gameState)) == 0);
-    game_state_is_equal(&preState, &state, "Game states are not equal");
-    report_result(startingActionCount + numActions, afterActionCount, "\t\t*FAILED* Expected action count to be %i, but is actually %i\n");
-
-
-    puts("\t Great Hall effect triggers correctly regardless of hand");
-    int preHandSize,
-        postHandSize,
-        preActionCount,
-        postActionCount;
-
-    // Card effect works regardless of hand size or contents.
-    // Hand is randomly generated from all possible hand sizes.
-    int handSize = floor(Random() * MAX_HAND);
-    game_state_set_hand_random(&state, player, handSize);
-    preHandSize = state.handCount[player];
-    preActionCount = state.numActions;
-    cardEffect(great_hall, 0, 0, 0, &state, pos, NULL);
-    postHandSize = state.handCount[player];
-    postActionCount = state.numActions;
-    if ((postHandSize +1 != preHandSize) || (postActionCount-1 != preActionCount)) {
-        printf("\\ttFailed with hand size of %i\n", handSize);
-    } else {
-        printf("\t\tPassed.\n");
-    }
 
     return 0;
 }

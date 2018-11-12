@@ -65,18 +65,18 @@ randomtestcard2.out: randomtestcard2
 	@cat dominion.c.gcov >> randomtestcard2.out
 	@echo "Test results written to 'randomtestcard2.out'"
 
-randomtestcard3.o: randomtestcard3.c testhelpers.o dominion.o rngs.o
-	gcc -c randomtestcard3.c testhelpers.c -g $(CFLAGS)
+randomtestadventurer.o: randomtestadventurer.c testhelpers.o dominion.o rngs.o
+	gcc -c randomtestadventurer.c testhelpers.c -g $(CFLAGS)
 
-randomtestcard3: randomtestcard3.o dominion.o rngs.o testhelpers.o
-	gcc -o randomtestcard3 $(CFLAGS) -g randomtestcard3.o dominion.o rngs.o testhelpers.o
+randomtestadventurer: randomtestadventurer.o dominion.o rngs.o testhelpers.o
+	gcc -o randomtestadventurer $(CFLAGS) -g randomtestadventurer.o dominion.o rngs.o testhelpers.o
 
-randomtestcard3.out: randomtestcard3
-	@echo "Executing randomtestcard3..."
-	@./randomtestcard3 > randomtestcard3.out
-	@gcov dominion.c >> randomtestcard3.out
-	@cat dominion.c.gcov >> randomtestcard3.out
-	@echo "Test results written to 'randomtestcard3.out'"
+randomtestadventurer.out: randomtestadventurer
+	@echo "Executing randomtestadventurer..."
+	@./randomtestadventurer > randomtestadventurer.out
+	@gcov dominion.c >> randomtestadventurer.out
+	@cat dominion.c.gcov >> randomtestadventurer.out
+	@echo "Test results written to 'randomtestadventurer.out'"
 
 all: playdom player 
 

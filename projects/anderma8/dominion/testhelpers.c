@@ -63,7 +63,7 @@ more state variables than game_state_initialize_random.
 
 Code adapted from class lectures.
 */
-void game_state_inititalize_random_full(struct gameState *state) {
+void game_state_initialize_random_full(struct gameState *state) {
     // Clear existing state.
     memset(state, 0, sizeof(struct gameState));
     int kingdomCards[10];
@@ -100,6 +100,7 @@ void game_state_inititalize_random_full(struct gameState *state) {
     memcpy(state->hand[1], kingdomCards, sizeof(int) * state->handCount[1]);
     memcpy(state->deck[1], playerDeck, sizeof(int) * state->deckCount[1]);
     memcpy(state->discard[1], playerDiscard, sizeof(int) * 5);
+
 }
 
 void report_result(int expected, int actual, char *errMsg) {

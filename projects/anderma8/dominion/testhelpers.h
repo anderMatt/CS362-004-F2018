@@ -20,6 +20,12 @@ Initializes a game with randomized state.
 void game_state_initialize_random(struct gameState *state);
 
 /*
+Initializes a game with randomized state. Initializes more
+state variables than game_state_initialize_random.
+*/
+void game_state_initialize_random_full(struct gameState *state);
+
+/*
 Checks that expected == actual. If false, reports an error.
 */
 

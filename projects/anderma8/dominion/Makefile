@@ -81,4 +81,4 @@ randomtestadventurer.out: randomtestadventurer
 all: playdom player 
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe *.out
+	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe *.out randomtest1.out randomtest2.out randomtestadventurer.out randomtest1 randomtest2 randomtestadventurer

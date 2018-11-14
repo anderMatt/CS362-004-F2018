@@ -29,15 +29,13 @@ int main(int argn, char **argv) {
 
     // Check card is drawn.
     int player = state.whoseTurn;
-    printf("Before cardToDraw\n");
     int cardToDraw = state.deck[player][0];
-    printf("Card to draw: %i\n\n", cardToDraw);
     int startingActions = state.numActions;
 
     // Add Great Hall to hand.
     int pos = state.handCount[player];
     state.hand[player][pos] = great_hall;
-    printf("HAND POS IS: %i\n\n", pos);
+	state.playedCardCount = floor(Random() * MAX_DECK);
 
     cardEffect(great_hall, 0, 0, 0, &state, pos, NULL);
     // Correct card was drawn, from correct player's deck.
@@ -64,10 +62,12 @@ int main(int argn, char **argv) {
     }
 
     int afterActionCount = state.numActions;
+    memcpy(&state, &preState, sizeof(struct gameState));
     // Ensure there were no unintended sideffects
     // assert(memcmp(&preState, &state, sizeof(struct gameState)) == 0);
     game_state_is_equal(&preState, &state, "Game states are not equal");
-    report_result(startingActionCount + numActions, afterActionCount, "\t\t*FAILED* Expected action count to be %i, but is actually %i\n");
+	// Subtract 4 to account for previous effects.
+    report_result(startingActionCount + numActions-4, afterActionCount, "\t\t*FAILED* Expected action count to be %i, but is actually %i\n");
 
 
     puts("\t Great Hall effect triggers correctly regardless of hand");
@@ -86,7 +86,7 @@ int main(int argn, char **argv) {
     postHandSize = state.handCount[player];
     postActionCount = state.numActions;
     if ((postHandSize +1 != preHandSize) || (postActionCount-1 != preActionCount)) {
-        printf("\\ttFailed with hand size of %i\n", handSize);
+        printf("\t\tFailed with hand size of %i\n", handSize);
     } else {
         printf("\t\tPassed.\n");
     }

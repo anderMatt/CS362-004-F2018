@@ -21,17 +21,23 @@ int main(int argn, char **argv) {
 
     struct gameState state;
     game_state_initialize_random(&state);
+    // Additional state variables great hall assumes are valid. We must ensure
+    // these are set for ALL tests, because random initialization may not be sufficient.
+
 
     puts("*** Great Hall random tests ***");
 
     // Check card is drawn.
     int player = state.whoseTurn;
+    printf("Before cardToDraw\n");
     int cardToDraw = state.deck[player][0];
+    printf("Card to draw: %i\n\n", cardToDraw);
     int startingActions = state.numActions;
 
     // Add Great Hall to hand.
-    int pos = state.handCount[player] - 2;
+    int pos = state.handCount[player];
     state.hand[player][pos] = great_hall;
+    printf("HAND POS IS: %i\n\n", pos);
 
     cardEffect(great_hall, 0, 0, 0, &state, pos, NULL);
     // Correct card was drawn, from correct player's deck.

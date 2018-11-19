@@ -1,4 +1,5 @@
 CFLAGS= -Wall -fpic -coverage -lm -std=c99
+REPORT=unittestresults.out
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
@@ -77,6 +78,84 @@ randomtestadventurer.out: randomtestadventurer
 	@gcov dominion.c >> randomtestadventurer.out
 	@cat dominion.c.gcov >> randomtestadventurer.out
 	@echo "Test results written to 'randomtestadventurer.out'"
+
+unittest1.o: dominion.o rngs.o
+	gcc -c unittest1.c -g $(CFLAGS)
+
+
+unittest2.o: dominion.o rngs.o testhelpers.o
+	gcc -c unittest2.c -g $(CFLAGS)
+
+
+unittest3.o: dominion.o rngs.o testhelpers.o
+	gcc -c unittest3.c -g $(CFLAGS)
+
+
+unittest4.o: dominion.o rngs.o testhelpers.o
+	gcc -c unittest4.c -g $(CFLAGS)
+
+
+cardtest1.o: cardtest1.c dominion.o rngs.o testhelpers.o
+	gcc -c cardtest1.c -g $(CFLAGS)
+
+cardtest2.o: cardtest2.c dominion.o rngs.o testhelpers.o
+	gcc -c cardtest2.c -g $(CFLAGS)
+
+cardtest3.o: cardtest3.c dominion.o rngs.o testhelpers.o
+	gcc -c cardtest3.c -g $(CFLAGS)
+
+cardtest4.o: cardtest4.c dominion.o rngs.o testhelpers.o
+	gcc -c cardtest4.c -g $(CFLAGS)
+
+unittest1: unittest1.o dominion.o rngs.o
+	gcc -o unittest1 $(CFLAGS) -g unittest1.o dominion.o rngs.o
+
+unittest2: unittest2.o dominion.o rngs.o testhelpers.o
+	gcc -o unittest2 $(CFLAGS) -g unittest2.o dominion.o rngs.o testhelpers.o
+
+unittest3: unittest3.o dominion.o rngs.o testhelpers.o
+	gcc -o unittest3 $(CFLAGS) -g unittest3.o dominion.o rngs.o testhelpers.o
+
+unittest4: unittest4.o dominion.o rngs.o
+	gcc -o unittest4 $(CFLAGS) -g unittest4.o dominion.o rngs.o testhelpers.o
+
+cardtest1: cardtest1.o dominion.o rngs.o testhelpers.o
+	gcc -o cardtest1 $(CFLAGS) -g cardtest1.o dominion.o rngs.o testhelpers.o
+
+cardtest2: cardtest2.o dominion.o rngs.o
+	gcc -o cardtest2 $(CFLAGS) -g cardtest2.o dominion.o rngs.o testhelpers.o
+
+cardtest3: cardtest3.o dominion.o rngs.o
+	gcc -o cardtest3 $(CFLAGS) -g cardtest3.o dominion.o rngs.o testhelpers.o
+
+cardtest4: cardtest4.o dominion.o rngs.o
+	gcc -o cardtest4 $(CFLAGS) -g cardtest4.o dominion.o rngs.o testhelpers.o
+
+unittestresults: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
+	@echo "Running Dominion Unittests" > $(REPORT)
+	@echo "***************" >> $(REPORT)
+
+	@./unittest1 >> $(REPORT)
+
+	@./unittest2 >> $(REPORT)
+	@./unittest3 >> $(REPORT)
+
+	@./unittest4 >> $(REPORT)
+
+	@./cardtest1 >> $(REPORT)
+
+	@./cardtest2 >> $(REPORT) # POSSIBLE INFINITE LOOP - see README.md
+
+	@./cardtest3 >> $(REPORT)
+
+	@./cardtest4 >> $(REPORT)
+
+
+	@gcov dominion.c >> $(REPORT)
+
+
+	@echo "Completed Dominion unit tests."
+
 
 all: playdom player 
 

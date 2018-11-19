@@ -119,3 +119,70 @@ int game_state_is_equal(struct gameState *pre, struct gameState *post, char *err
 
     return 1;
 }
+
+
+#include "testhelpers.h"
+#include "string.h"
+
+int hand_contains(struct gameState *state, int player, int card) {
+    for (int i = 0; i < state->handCount[player]; i++) {
+        if (state->hand[player][i] == card) {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+void setHand(struct gameState *state, int player, int newHand[], int size) {
+    memcpy(state->hand[player], newHand, sizeof(int) * size);
+    state->handCount[player] = size;
+}
+
+int hand_count_card(struct gameState *state, int player, int card) {
+    int counter = 0;
+    for (int i = 0; i < state->handCount[player]; i++) {
+        if (state->hand[player][i] == card) {
+            counter++;
+        }
+    }
+
+    return counter;
+}
+
+int deck_count_card(struct gameState *state, int player, int card) {
+    int counter = 0;
+    for (int i = 0; i < state->deckCount[player]; i++) {
+        if (state->deck[player][i] == card) {
+            counter++;
+        }
+    }
+
+    return counter;
+}
+
+int deck_contains_card_exact(struct gameState *state, int player, int card, int count) {
+    int counter = 0;
+    for (int i = 0; i < state->deckCount[player]; i++) {
+        if (state->deck[player][i] == card) {
+            counter++;
+        }
+    }
+
+    return (counter == count);
+}
+
+void replenish_supply_count(struct gameState *state) {
+    for (int i = 0; i < 25; i++) {
+        state->supplyCount[i] = 10;
+    }
+}
+
+
+// void report_result(int expected, int actual, char *errMessage) {
+//     if (expected == actual) {
+//         puts("\t\tPassed.");
+//     } else {
+//         printf("\t\tFailed. %s\n", errMessage);
+//     }
+// }

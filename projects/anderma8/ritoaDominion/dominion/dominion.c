@@ -645,13 +645,7 @@ int getCost(int cardNumber)
 int adventurer_(int drawntreasure_, int currentPlayer_, struct gameState *state)
 {
 	int cardDrawn;
-	int z = 0;// this is the counter for the temp hand
-	while(drawntreasure_<2){
-		if (state->deckCount[currentPlayer_] <1){//if the deck is empty we need to shuffle discard and add to deck
-		  shuffle(currentPlayer_, state);
-int adventurer_(int drawntreasure_, int currentPlayer_, struct gameState *state)
-{
-	int cardDrawn;
+  int temphand[MAX_HAND];
 	int z = 0;// this is the counter for the temp hand
 	while(drawntreasure_<2){
 		if (state->deckCount[currentPlayer_] <1){//if the deck is empty we need to shuffle discard and add to deck
@@ -746,6 +740,7 @@ int steward_(int currentPlayer_, int choice1_, int choice2_, int choice3_, int h
 int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
 {
   int j;
+  int i;
   int k;
   int x;
   int index;
@@ -764,7 +759,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-		return adventurer_(drawntreasure_, currentPlayer_, state);
+		return adventurer_(drawntreasure, currentPlayer, state);
     
 			
     case council_room:
@@ -1364,5 +1359,3 @@ int updateCoins(int player, struct gameState *state, int bonus)
 
 
 //end of dominion.c
-
-

@@ -33,7 +33,52 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
+
+### ASSIGNMENT 4 ###
+
+testhelpers.o: testhelpers.c testhelpers.h
+	gcc -c testhelpers.c $(CFLAGS) -g
+
+randomtestcard1.o: randomtestcard1.c testhelpers.o dominion.o rngs.o
+	gcc -c randomtestcard1.c testhelpers.c -g $(CFLAGS)
+
+randomtestcard1: randomtestcard1.o dominion.o rngs.o testhelpers.o
+	gcc -o randomtestcard1 $(CFLAGS) -g randomtestcard1.o dominion.o rngs.o testhelpers.o
+
+randomtestcard1.out: randomtestcard1
+	@echo "Executing randomtestcard1..."
+	@./randomtestcard1 > randomtestcard1.out
+	@gcov dominion.c >> randomtestcard1.out
+	@cat dominion.c.gcov >> randomtestcard1.out
+	@echo "Test results written to 'randomtestcard1.out'"
+
+randomtestcard2.o: randomtestcard2.c testhelpers.o dominion.o rngs.o
+	gcc -c randomtestcard2.c testhelpers.c -g $(CFLAGS)
+
+randomtestcard2: randomtestcard2.o dominion.o rngs.o testhelpers.o
+	gcc -o randomtestcard2 $(CFLAGS) -g randomtestcard2.o dominion.o rngs.o testhelpers.o
+
+randomtestcard2.out: randomtestcard2
+	@echo "Executing randomtestcard2..."
+	@./randomtestcard2 > randomtestcard2.out
+	@gcov dominion.c >> randomtestcard2.out
+	@cat dominion.c.gcov >> randomtestcard2.out
+	@echo "Test results written to 'randomtestcard2.out'"
+
+randomtestadventurer.o: randomtestadventurer.c testhelpers.o dominion.o rngs.o
+	gcc -c randomtestadventurer.c testhelpers.c -g $(CFLAGS)
+
+randomtestadventurer: randomtestadventurer.o dominion.o rngs.o testhelpers.o
+	gcc -o randomtestadventurer $(CFLAGS) -g randomtestadventurer.o dominion.o rngs.o testhelpers.o
+
+randomtestadventurer.out: randomtestadventurer
+	@echo "Executing randomtestadventurer..."
+	@./randomtestadventurer > randomtestadventurer.out
+	@gcov dominion.c >> randomtestadventurer.out
+	@cat dominion.c.gcov >> randomtestadventurer.out
+	@echo "Test results written to 'randomtestadventurer.out'"
+
 all: playdom player 
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe *.out randomtest1.out randomtest2.out randomtestadventurer.out randomtest1 randomtest2 randomtestadventurer

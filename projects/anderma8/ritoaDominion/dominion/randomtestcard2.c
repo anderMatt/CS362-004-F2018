@@ -37,7 +37,8 @@ int main(int argn, char **argv) {
     // Add Great Hall to hand.
     int pos = state.handCount[player];
     state.hand[player][pos] = great_hall;
-    printf("HAND POS IS: %i\n\n", pos);
+	state.playedCardCount = 5;
+
 
     cardEffect(great_hall, 0, 0, 0, &state, pos, NULL);
     // Correct card was drawn, from correct player's deck.

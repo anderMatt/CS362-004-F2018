@@ -6,12 +6,15 @@ Test Execution
 Unit tests can be executed with:
 
 ```bash
+$ make clean
 $ make unittestresults  // Results written to 'unittestresults.out'
 ```
 
 Random tests can be executed with:
 
 ```bash
+
+$ make clean
 
 $ make randomtestcard1.out  // Village card - results written to 'randomtestcard1.out'
 

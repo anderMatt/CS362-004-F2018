@@ -1,9 +1,9 @@
 /**************************************************
  * Matthew Anderson
- * 10/31/18
- * CS 362 Assignment 4
+ * 11/21/18
+ * CS 362 Assignment 5
  * 
- * Helper functions for assignment 4.
+ * Helper functions for assignment 5.
 **************************************************/
 
 #ifndef _TEST_HELPERS_H

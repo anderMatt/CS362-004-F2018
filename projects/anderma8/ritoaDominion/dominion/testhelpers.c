@@ -1,9 +1,9 @@
 /**************************************************
  * Matthew Anderson
- * 11/12/18
- * CS 362 Assignment 4
+ * 11/21/18
+ * CS 362 Assignment 5
  * 
- * Helper functions for assignment 4.
+ * Helper functions for assignment 5.
 **************************************************/
 
 #include <stdio.h>

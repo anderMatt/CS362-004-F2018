@@ -1,7 +1,7 @@
 /**************************************************
  * Matthew Anderson
- * 11/12/18
- * CS 362 Assignment 4
+ * 11/21/18
+ * CS 362 Assignment 5
  * 
  * Random test generator for the 'Adventurer' card.
 **************************************************/

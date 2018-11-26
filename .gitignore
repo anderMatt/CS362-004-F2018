@@ -5,3 +5,4 @@ dominion/*.o
 dominion/playdom
 dominion/player
 dominion/*.gcno
+.idea/

@@ -11,6 +11,8 @@ import junit.framework.TestCase;
 
 
 public class UrlValidatorTest extends TestCase {
+   private int assertCount = 0;  // Number of executed test cases.
+   private int passCount = 0;  // Number of test cases that pass.
 
 
    public UrlValidatorTest(String testName) {
@@ -26,14 +28,34 @@ public class UrlValidatorTest extends TestCase {
    }
    
    
-   public void testYourFirstPartition()
-   {
-	 //You can use this function to implement your First Partition testing	   
+   public void testIsValidScheme() {  // First URL partition: Scheme.
+      UrlValidator validator = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+      assertTrue("HTTP scheme is valid", validator.isValid("http://google.com"));
+      assertTrue("FTP scheme is valid", validator.isValid("ftp://google/file"));
+      assertTrue("FTPS scheme is valid", validator.isValid("ftps://path/to/my/file.txt"));
+      assertTrue("TELNET scheme is valid", validator.isValid("telnet://localhost:5050"));
+
+      assertFalse("Scheme cannot contain symbols", validator.isValid("ht!p://google.com"));
+      assertFalse("Scheme cannot begin with numeric character", validator.isValid("0http://google.com"));
+
 
    }
    
-   public void testYourSecondPartition(){
+   public void testIsValidAuthority() {  // Second URL partition: Authority.
 		 //You can use this function to implement your Second Partition testing	   
+
+   }
+
+   public void testIsValidPort() {  // Third URL partition: Port.
+
+   }
+
+   public void testIsValidPath() {  // Fourth URL partition: Path.
+
+   }
+
+   public void testIsValidQuery() {  // Fifth URL partition: Query string.
 
    }
    //You need to create more test cases for your Partitions if you need to 
@@ -42,8 +64,24 @@ public class UrlValidatorTest extends TestCase {
    {
 	   //You can use this function for programming based testing
 
+      // Build URLs from permutations of scheme options, path options, etc.
+
    }
-   
+
+
+   private ResultPair[] getSchemeOptions() {
+      ResultPair[] schemes = {
+              new ResultPair("http://", true),
+              new ResultPair("https://", true),
+              new ResultPair("htt3p://", false),
+              new ResultPair("1https://", false),
+              new ResultPair("://", false)
+      };
+
+      return schemes;
+   }
+
+
 
 
 }

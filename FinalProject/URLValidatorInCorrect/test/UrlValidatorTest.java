@@ -50,6 +50,13 @@ public class UrlValidatorTest extends TestCase {
    }
 
    public void testIsValidPort() {  // Third URL partition: Port.
+       UrlValidator validator = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+       assertTrue("Numeric port is valid", validator.isValid("http://google.com:80"));
+       assertFalse("Negative port is invalid", validator.isValid("http://google.com:-80"));
+       assertFalse("Alpha port is invalid", validator.isValid("http://google.com:abc"));
+       assertFalse("Non-numeric port is invalid", validator.isValid("http://google.com:abc"));
+       assertTrue("Large numeric port is invalid", validator.isValid("http://google.com:999999"));
 
    }
 

@@ -65,7 +65,12 @@ public class UrlValidatorTest extends TestCase {
    }
 
    public void testIsValidQuery() {  // Fifth URL partition: Query string.
-
+       UrlValidator validator = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+       
+       assertTrue("Query is valid", validator.isValidQuery("?action=view"));
+       assertTrue("Query is valid", validator.isValidQuery("?action=edit&mode=up"));
+       assertTrue("Query is valid", validator.isValidQuery(""));
+       assertFalse("Query is invalid", validator.isValidQuery("garbage:***@**"));
    }
    //You need to create more test cases for your Partitions if you need to 
    
